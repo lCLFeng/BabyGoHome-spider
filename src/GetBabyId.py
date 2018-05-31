@@ -28,7 +28,7 @@ def get_one_page(url):
     }
     # 请求并返回网页
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=5)
         print('状态码:\t\t' + str(response.status_code))
         if response.status_code == 200:
             return response.content.decode('utf-8')
@@ -72,7 +72,7 @@ def get_detail_info(items, offset):
         url = 'http://www.baobeihuijia.com/view.aspx?type=1&id=' + str(item)
         print('\033[0;34;m' + '页数:\t\t' + str(offset) + '    序号: ' + str(item_count))
         # 设置随机时间延迟爬取详情页
-        random_sleep_time = random.uniform(0.2, 2.000001)
+        random_sleep_time = random.uniform(0.1, 0.500001)
         print('\033[0;34;m' + '延迟:\t\t' + str(random_sleep_time) + 's' + '    页数:' + str(offset) + '\033[0m')
         time.sleep(random_sleep_time)
         if item_count == 12:
@@ -138,6 +138,7 @@ def main(offset):
         else:
             print('\033[1;31;m' + '详情页返回空' + '\033[0m')
     else:
+        write_to_file(url)
         print('\033[1;31;m' + '列表页返回空' + '\033[0m')
 
 
@@ -154,7 +155,7 @@ if __name__ == '__main__':
         # 往表中写入标题行,以列表形式写入
         ws.append(['寻亲类别', '寻亲编号', '姓名', '性别', '出生日期', '失踪时身高', '失踪时间', '失踪人所在地',
                    '失踪地点', '寻亲者特征描述', '其他资料', '注册时间', '跟进志愿者'])
-    for i in range(545, 1292):
+    for i in range(1192, 1193):
         print(
             '\033[1;32;m' + '###########################开始写入: 第' + str(i) + '页###########################' + '\033[0m')
         main(i)
