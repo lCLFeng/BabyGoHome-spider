@@ -23,7 +23,7 @@ def read_excel():
     # 创建一个worksheet
     worksheet = workbook.add_sheet('Worksheet')
     # 读取excel
-    ExcelFile = xlrd.open_workbook(r'C:\Users\lCLFeng\Desktop\大数据文本分析\(三次清洗)babyfindfamily_addr.xlsx')
+    ExcelFile = xlrd.open_workbook(r'城市数据文件路径.xlsx')
     # 获取目标EXCEL文件sheet名
     # print(ExcelFile.sheet_names())
     # 获取sheet内容【1.根据sheet索引2.根据sheet名称】
